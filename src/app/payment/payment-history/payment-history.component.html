@@ -1,0 +1,23 @@
+<p>payment-history works!</p>
+<h2>Payment History</h2>
+
+<table border="1">
+  <thead>
+    <tr>
+      <th>Patient ID</th>
+      <th>Amount</th>
+      <th>Card Number</th>
+      <th>Expiration Date</th>
+      <th>CVV</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let payment of payments">
+      <td>{{ payment.patientId }}</td>
+      <td>{{ payment.amount }}</td>
+      <td>{{ payment.cardNumber }}</td>
+      <td>{{ payment.expirationDate }}</td>
+      <td>{{ payment.cvv }}</td>
+    </tr>
+  </tbody>
+</table>

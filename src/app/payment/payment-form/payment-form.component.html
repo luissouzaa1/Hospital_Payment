@@ -1,0 +1,44 @@
+
+<form #paymentForm="ngForm" (ngSubmit)="submitPayment(paymentForm)" novalidate>
+  <!-- Patient ID -->
+  <div>
+    <label for="patientId">Patient ID</label>
+    <input id="patientId" [(ngModel)]="patientId" name="patientId" required>
+    <div *ngIf="paymentForm.submitted && !patientId" style="color:red">Patient ID is required</div>
+  </div>
+  
+  <!-- Amount -->
+  <div>
+    <label for="amount">Amount</label>
+    <input id="amount" [(ngModel)]="amount" name="amount" type="number" required min="0.01" #amountInput="ngModel">
+    <div *ngIf="paymentForm.submitted && amountInput.errors?.required" style="color:red">Amount is required</div>
+    <div *ngIf="paymentForm.submitted && amountInput.errors?.min" style="color:red">Amount must be a positive number</div>
+  </div>
+  
+  <!-- Card Number -->
+  <div>
+    <label for="cardNumber">Card Number</label>
+    <input id="cardNumber" [(ngModel)]="cardNumber" name="cardNumber" pattern="^[0-9]{16}$" required #cardNumberInput="ngModel">
+    <div *ngIf="paymentForm.submitted && cardNumberInput.errors?.required" style="color:red">Card Number is required</div>
+    <div *ngIf="paymentForm.submitted && cardNumberInput.errors?.pattern" style="color:red">Card Number must be 16 digits long</div>
+  </div>
+  
+  <!-- Expiration Date -->
+  <div>
+    <label for="expirationDate">Expiration Date</label>
+    <input id="expirationDate" [(ngModel)]="expirationDate" name="expirationDate" type="month" required (ngModelChange)="validateExpirationDate($event)" #expDateInput="ngModel">
+    <div *ngIf="paymentForm.submitted && expDateInput.errors?.required" style="color:red">Expiration Date is required</div>
+    <div *ngIf="paymentForm.submitted && expDateInput.errors?.invalidDate" style="color:red">Expiration Date must be after today's date</div>
+  </div>
+  
+  <!-- CVV -->
+  <div>
+    <label for="cvv">CVV</label>
+    <input id="cvv" [(ngModel)]="cvv" name="cvv" pattern="^[0-9]{3}$" required #cvvInput="ngModel">
+    <div *ngIf="paymentForm.submitted && cvvInput.errors?.required" style="color:red">CVV is required</div>
+    <div *ngIf="paymentForm.submitted && cvvInput.errors?.pattern" style="color:red">CVV must be 3 digits</div>
+  </div>
+  
+  <!-- Submit Button -->
+  <button type="submit">Make Payment</button>
+</form>

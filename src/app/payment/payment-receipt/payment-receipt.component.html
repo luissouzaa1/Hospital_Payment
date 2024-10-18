@@ -1,0 +1,10 @@
+
+<h2>Payment Receipt</h2>
+
+<div *ngIf="payment">
+  <p>Patient ID: {{ payment.patientId }}</p>
+  <p>Amount: {{ payment.amount }}</p>
+  <p>Card Number: {{ payment.cardNumber }}</p>
+  <p>Expiration Date: {{ payment.expirationDate }}</p>
+  <p>CVV: {{ payment.cvv }}</p>
+</div>
