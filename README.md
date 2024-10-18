@@ -75,8 +75,8 @@ Ensure the SSL certificate (ca-certificate.crt) is placed inside the certs folde
 Ensure the correct database credentials (host, user, password, etc.) are set in server.js. The current settings are:
 const db = mysql.createConnection({
   host: 'database-do-user-15282129-0.c.db.ondigitalocean.com',
-  user: 'doadmin',
-  password: 'AVNS_5wzeG8bGMgeqcXm_fy8',
+  user: '',
+  password: '',
   database: 'payments_db',
   port: 25060,
   ssl: {
